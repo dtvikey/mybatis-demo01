@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <script src="lib/2.2.4/jquery-1.12.4.min.js"/>
     <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"/>
-
 </head>
 <body>
 <div class="container">
