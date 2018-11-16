@@ -9,8 +9,18 @@
 <html>
 <head>
     <title>慕课网用户管理中心</title>
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="lib/2.2.4/jquery-1.12.4.min.js"/>
+    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"/>
+
 </head>
 <body>
-<h1>用户管理中心</h1>
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>慕课网后台管理系统 <small>用户数据管理中心</small></h1>
+        </div>
+    </div>
+</div>
 </body>
 </html>
