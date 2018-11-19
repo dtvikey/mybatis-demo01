@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
@@ -38,8 +38,7 @@
             <c:forEach var="user" items="${usersList}">
             <tr>
                 <td>${user.id}</td>
-                <%--<td>${user.username}</td>--%>
-                <td>${user.name}</td>
+                <td>${user.username}</td>
                 <td>${user.nickname}</td>
                 <td>${user.email}</td>
                 <td>${user.phone}</td>

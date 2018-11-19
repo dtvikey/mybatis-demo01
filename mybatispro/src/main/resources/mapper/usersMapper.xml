@@ -8,5 +8,12 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
 命名空间默认情况下，使用我们当前操作的实体类的全路径
 -->
 <mapper namespace="com.damu.entity.Users">
+   <select id="findAll" resultType="com.damu.entity.Users">
+       select * from users
+   </select>
+
+    <select id="findById" resultType="com.damu.entity.Users">
+       select * from users where id=#{id}
+   </select>
 
 </mapper>

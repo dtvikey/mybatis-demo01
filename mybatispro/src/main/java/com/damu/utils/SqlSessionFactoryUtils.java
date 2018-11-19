@@ -37,7 +37,7 @@ public class SqlSessionFactoryUtils {
      * 获取工厂对象的方法
      */
 
-    public SqlSessionFactory getSqlSessionFactory(){
+    public static SqlSessionFactory getSqlSessionFactory(){
         return sqlSessionFactory;
     }
 
