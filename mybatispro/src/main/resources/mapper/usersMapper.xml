@@ -19,11 +19,19 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
 
     <!--自定义映射关系集合：主要包含对于一些自定义操作的配置,如不一致的属性和字段-->
     <resultMap id="forUsers" type="com.damu.entity.Users">
-        <!---->
-        <!--<id column="" property=""></id>-->
+        <!--绑定id主键-->
+        <id property="id" column="id"></id>
         <!--result配置,主要配置普通属性,column表示配置的是数据库字段名称 property配置的是实体类的属性名称-->
         <result column="username" property="name"></result>
+        
+        <collection property="addresses" column="id" ofType="com.damu.entity.Address" select="getAddress">
+
+        </collection>
     </resultMap>
+
+    <select id="getAddress" resultType="com.damu.entity.Address">
+        select * from address where userid = #{id}
+    </select>
 
     <!--<select id="findById" resultType="com.damu.entity.Users">
           select * from users where id=#{id}
