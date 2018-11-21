@@ -37,7 +37,8 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">用户账号</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">${user.username}</p>
+                        <%--<p class="form-control-static">${user.username}</p>--%>
+                            <p class="form-control-static">${user.name}</p>
                     </div>
                 </div>
                 <div class="form-group">

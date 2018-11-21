@@ -8,12 +8,58 @@ namespace属性是用来配置命名空间，主要进行session级别的缓存�
 命名空间默认情况下，使用我们当前操作的实体类的全路径
 -->
 <mapper namespace="com.damu.entity.Users">
-   <select id="findAll" resultType="com.damu.entity.Users">
+    <!--  resultType 和 resultMap 同时只能出现一个.-->
+   <!--<select id="findUsers" resultType="com.damu.entity.Users">-->
+    <select id="findUsers" resultMap="forUsers">
        select * from users
+       <if test="id!=null">
+           where id = #{id}
+       </if>
    </select>
 
-    <select id="findById" resultType="com.damu.entity.Users">
-       select * from users where id=#{id}
-   </select>
+    <!--自定义映射关系集合：主要包含对于一些自定义操作的配置,如不一致的属性和字段-->
+    <resultMap id="forUsers" type="com.damu.entity.Users">
+        <!---->
+        <!--<id column="" property=""></id>-->
+        <!--result配置,主要配置普通属性,column表示配置的是数据库字段名称 property配置的是实体类的属性名称-->
+        <result column="username" property="name"></result>
+    </resultMap>
+
+    <!--<select id="findById" resultType="com.damu.entity.Users">
+          select * from users where id=#{id}
+        </select>-->
+
+    <!--sql片段-->
+    <sql id="user_fields">
+       username,userpass,nickname,age,gender,email,phone,createTime,updateTime,lastLogin,userstatus,remark
+    </sql>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        insert into users(<include refid="user_fields"></include>)
+         values (#{name},#{userpass},#{nickname},#{age},#{gender},#{email},#{phone},#{createTime},#{updateTime},#{lastLogin},#{userStatus},#{remark})
+    </insert>
+
+    <update id="updateUser">
+        update users
+        <set>
+            <if test="name != null">username = #{name},</if>
+            <if test="userpass != null">userpass = #{userpass},</if>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="updateTime != null">updateTime = #{updateTime},</if>
+            <if test="lastLogin != null">lastlogin = #{lastLogin},</if>
+            <if test="userStatus != null">userStatus = #{userStatus},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delUser">
+        delete from users where id = #{id}
+    </delete>
 
 </mapper>

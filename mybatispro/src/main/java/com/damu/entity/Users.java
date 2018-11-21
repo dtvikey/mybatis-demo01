@@ -14,7 +14,8 @@ import java.util.List;
 public class Users {
 
     private Integer id;                 // 用户编号
-    private String username;            // 登录账号
+    //private String username;          // 登录账号
+    private String name;                // 登录账号
     private String userpass;            // 登录密码
     private String nickname;            // 用户昵称
     private Integer age;                // 用户年龄
@@ -26,6 +27,62 @@ public class Users {
     private Date lastLogin;             // 用户最后登录时间
     private Integer userStatus;         // 用户账号状态 0 正常 1 锁定 2 删除
     private String remark;              // 用户备注信息
+    private List<Address> addresses;     //用户地址信息 [地址列表,有一个是默认地址]
+
+
+
+    public Users() {
+    }
+
+    public Users(Integer id) {
+        this.id = id;
+    }
+
+    public Users(String name, String userpass, String nickname, Integer age, String gender, String phone, String email) {
+        this.name = name;
+        this.userpass = userpass;
+        this.nickname = nickname;
+        this.age = age;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    public Users(Integer id, String nickname, Integer age, String gender, String phone, String email, Date updateTime, String remark) {
+        this.id = id;
+        this.nickname = nickname;
+        this.age = age;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.updateTime = updateTime;
+        this.remark = remark;
+    }
+
+    public Users(String name, String userpass, String nickname, Integer age, String gender, String phone, String email, Date createTime, Date updateTime, Date lastLogin, Integer userStatus) {
+        this.name = name;
+        this.userpass = userpass;
+        this.nickname = nickname;
+        this.age = age;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.lastLogin = lastLogin;
+        this.userStatus = userStatus;
+    }
+
+    public Users(Integer id, String nickname, Integer age, String gender, String phone, String email, String remark) {
+        this.id = id;
+        this.nickname = nickname;
+        this.age = age;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.remark = remark;
+    }
+
 
     public Integer getId() {
         return id;
@@ -35,12 +92,20 @@ public class Users {
         this.id = id;
     }
 
-    public String getUsername() {
+    /*public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }*/
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUserpass() {
@@ -130,4 +195,13 @@ public class Users {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
 }

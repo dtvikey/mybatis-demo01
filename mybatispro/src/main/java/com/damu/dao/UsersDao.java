@@ -13,9 +13,15 @@ import java.util.List;
  */
 public class UsersDao {
 
-    private SqlSession sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession();
+    private SqlSession sqlSession;
     private List<Users> list;
     private Users user;
+
+    private SqlSession getSession(){
+        sqlSession = SqlSessionFactoryUtils.getSqlSessionFactory().openSession();
+        return sqlSession;
+    }
+
 
     /**
      * 查询全部用户
@@ -25,7 +31,7 @@ public class UsersDao {
 
         try{
 
-            list = sqlSession.selectList("findAll");
+            list = getSession().selectList("findUsers");
 
         }catch (Exception e){
 
@@ -49,7 +55,7 @@ public class UsersDao {
 
         try{
 
-            user = sqlSession.selectOne("findById",id);
+            user = getSession().selectOne("findUsers",new Users(id));
 
         }catch (Exception e){
 
@@ -62,5 +68,88 @@ public class UsersDao {
         }
 
         return user;
+
     }
+
+    /**
+     * 添加一个新用户数据到数据库
+     * @return
+     */
+    public Users addUser(Users user){
+
+        try{
+
+            //返回值:insert执行过程中影响的行数
+            getSession().insert("addUser",user);
+
+            sqlSession.commit();
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            sqlSession.close();
+
+        }
+
+        return user;
+
+    }
+
+    /**
+     * 用于修改用户资料的方法
+     * @return
+     */
+    public Users updateUsers(Users user){
+
+        try{
+
+            //返回值:insert执行过程中影响的行数
+            getSession().update("updateUser",user);
+
+            sqlSession.commit();
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            sqlSession.close();
+
+        }
+
+        return user;
+
+    }
+
+
+    /**
+     * 用于删除用户资料的方法
+     * @return
+     */
+    public void delUsers(Integer id){
+
+        try{
+
+            getSession().delete("delUser",id);
+
+            sqlSession.commit();
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }finally {
+
+            sqlSession.close();
+
+        }
+
+
+    }
+
+
 }
